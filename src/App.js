@@ -5,8 +5,8 @@ import './App.css';
 export default function App() {
   return (
     <div className="App">
-      <div className="container1">
-      <Weather />
+      <div>
+      <Weather defaultCity="Melbourne,AU"/>
 
       </div>
     </div>

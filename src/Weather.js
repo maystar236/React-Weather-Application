@@ -1,29 +1,32 @@
-import React from "react";
+import React, { useState } from "react";
+import axios from "axios";
 
 
-
-export default function Weather() {
-  let weatherData = {
-    city: "Melbourne",
-    currentTemp: 29,
-    date: "Tuesday 10th November 2020",
-    time: "19:16",
-    currentDesc: "Sunny",
-    feelsLike: 34,
-    humidity: 77,
-    windSpeed: 12,
-    pressure: 134,
-    lowTemp: 23,
-    highTemp: 32,
-    sunrise: "4:56pm",
-    sunset: "7:38pm"
-  };
+export default function Weather(props) {
+  const [weatherData, setWeatherData] = useState({ ready: false });
+  function handleResponse(response) {
+    setWeatherData({
+      ready: true,
+      temperature: response.data.main.temp,
+      humidity: response.data.main.humidity,
+      description: response.data.weather[0].description,
+      wind: response.data.wind.speed,
+      city: response.data.name,
+      minTemp: response.data.main.temp_min,
+      maxTemp: response.data.main.temp_max,
+      feelsLike: response.data.main.feels_like,
+      sunrise: response.data.sys.sunrise,
+      sunset: response.data.sys.sunset,
+    });
+  }
+  
+if (weatherData.ready) {
   return (
     <div className="container">
       <div className="date-time">
-        <span id="date">Date: {weatherData.date}</span>
+        <span id="date">Date: {weatherData.date} </span>
         <br />
-        <span id="time">Local Time: {weatherData.time}</span>
+        <span id="time">Local Time: </span>
       </div>
       <form id="search-form">
         <input
@@ -41,12 +44,12 @@ export default function Weather() {
         </button>
       </form>
       <div className="current-weather">
-        <h2 id={weatherData.searchResult}>{weatherData.city}</h2>
+        <h2></h2>
         <br />
         <div className="row">
           <div className="col-6">
-            <h4 id="current-Desc">{weatherData.currentDesc}</h4>
-            <div className="current-temp">{weatherData.currentTemp}</div>
+            <h4 id="current-Desc">{weatherData.description}</h4>
+            <div className="current-temp">{Math.round(weatherData.temperature)}</div>
             <a href="#" id="celsiusTemp" className="active">
               °C
             </a>
@@ -65,22 +68,22 @@ export default function Weather() {
 
       <div className="row">
         <div className="col-6" id="feels-like">
-          Feels like: {weatherData.feelsLike}°C
+          Feels like: {Math.round(weatherData.feelsLike)}°C
         </div>
         <div className="col-6" id="humidity">
-          Humidity: {weatherData.humidity}%
+          Humidity: {Math.round(weatherData.humidity)}%
         </div>
         <div className="col-6" id="currentLowTemp">
-          Low: {weatherData.lowTemp}°C
+          Low: {Math.round(weatherData.minTemp)}°C
         </div>
         <div className="col-6" id="weatherPressure">
-          Pressure: {weatherData.pressure}
+          Pressure: 
         </div>
         <div className="col-6" id="currentHighTemp">
-          High: {weatherData.highTemp}°C
+          High: {Math.round(weatherData.maxTemp)}°C
         </div>
         <div className="col-6" id="wind">
-          Wind: {weatherData.windSpeed}
+          Wind: {Math.round(weatherData.wind)} km/h
         </div>
         <div className="col-6" id="sunrise">
           Sunrise: {weatherData.sunrise}
@@ -108,4 +111,10 @@ export default function Weather() {
       </a>
     </div>
   );
-}
+} else {
+  const apiKey = "f0fc9549c6de17fa6c965f916fc7d8d4";
+  let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${props.defaultCity}&appid=${apiKey}&units=metric`;
+  axios.get(apiUrl).then(handleResponse);
+
+  return "Loading....";
+}}
