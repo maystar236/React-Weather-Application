@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import FormattedDate from "./FormattedDate";
 import axios from "axios";
 
 
@@ -11,6 +12,7 @@ export default function Weather(props) {
       humidity: response.data.main.humidity,
       description: response.data.weather[0].description,
       wind: response.data.wind.speed,
+      date: new Date(response.data.dt * 1000),
       city: response.data.name,
       minTemp: response.data.main.temp_min,
       maxTemp: response.data.main.temp_max,
@@ -24,8 +26,8 @@ if (weatherData.ready) {
   return (
     <div className="container">
       <div className="date-time">
-        <span id="date">Date: {weatherData.date} </span>
-        <br />
+        <span id="date">Date:  </span>
+        <br /><formattedDate date={weatherData.date} />
         <span id="time">Local Time: </span>
       </div>
       <form id="search-form">
@@ -40,7 +42,7 @@ if (weatherData.ready) {
           <i className="fas fa-search"></i>
         </button>
         <button type="button" id="location-search">
-          <i className="fas fa-search-location"></i>
+          <i className="fas fa-search-location">{weatherData.city}</i>
         </button>
       </form>
       <div className="current-weather">
