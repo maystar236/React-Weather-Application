@@ -1,6 +1,6 @@
 import React from "react";
 import Sunrise from "./FormatSun";
-
+import Sunset from "./sunset.js";
 
 export default function WeatherInfo(props) {
     return (
@@ -48,10 +48,10 @@ export default function WeatherInfo(props) {
       Wind: {Math.round(props.data.wind)} km/h
     </div>
     <div className="col-6" id="sunrise">
-      Sunrise: <Sunrise />
+    Sunrise: <Sunrise sunrise={props.data.sunrise} />
     </div>
     <div className="col-6" id="sunset">
-      Sunset: {props.data.sunset}
+     Sunset: <Sunset sunset={props.data.sunset} />
     </div>
   </div>
   </div>)
