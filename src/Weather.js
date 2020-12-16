@@ -22,7 +22,7 @@ export default function Weather(props) {
       feelsLike: response.data.main.feels_like,
       sunrise: response.data.sys.sunrise,
       sunset: response.data.sys.sunset,
-      icon: 'src/Images/${response.data.weather[0].icon}.png',
+      icon: response.data.weather[0].icon,
     });
   }
   
