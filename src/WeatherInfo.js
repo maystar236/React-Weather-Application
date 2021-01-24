@@ -2,6 +2,8 @@ import React from "react";
 import Sunrise from "./FormatSun";
 import Sunset from "./sunset.js";
 import WeatherIcon from "./WeatherIcon";
+import WeatherTemperature from "./WeatherTemperature";
+
 
 export default function WeatherInfo(props) {
     return (
@@ -13,14 +15,7 @@ export default function WeatherInfo(props) {
     <div className="row">
       <div className="col-6">
         <h4 id="current-Desc">{props.data.description}</h4>
-        <div className="current-temp">{Math.round(props.data.temperature)}</div>
-        <a href="#" id="celsiusTemp" className="active">
-          °C
-        </a>
-        /
-        <a href="#" id="fahrenheitTemp">
-          °F
-        </a>
+        <WeatherTemperature celsius={props.data.temperature} />
       </div>
       <div className="col-6">
         <div className="current-weather">
