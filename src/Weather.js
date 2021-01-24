@@ -4,7 +4,6 @@ import FormattedTime from "./FormatTime";
 import FormattedDate from "./FormatDate";
 import axios from "axios";
 
-
 export default function Weather(props) {
   const [weatherData, setWeatherData] = useState({ ready: false });
   const [city, setCity] = useState (props.defaultCity);
