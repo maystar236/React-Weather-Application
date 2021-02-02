@@ -39,6 +39,21 @@ function search() {
   let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`;
   axios.get(apiUrl).then(handleResponse);
   
+  function getCurrentLocation(event) {
+    event.preventDefault();
+    navigator.geolocation.getCurrentPosition(current);
+  }
+
+  function current(position) {
+    let lon = position.coords.longitude;
+    let lat = position.coords.latitude;
+    let unit = "metric";
+    let url = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&units=metric&appid=${apiKey}&units=${unit}`;
+    apiUrl = `https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&appid=${apiKey}&units=${unit}`;
+    axios.get(apiUrl).then(handleResponse);
+  
+  }
+
   }
 
 if (weatherData.ready) {
@@ -58,13 +73,22 @@ if (weatherData.ready) {
           autocomplete="off"
           onChange={handleCityChange}
         />
+        </form>
         <button id="city-search">
-          <i className="fas fa-search"></i>
+        <input type="submit" className="search-button" value="Search" />
         </button>
-        <button type="button" id="location-search">
-          <i className="fas fa-search-location"></i>
+         <input
+            type="submit"
+            className="current-location-button"
+            id="current-location-button"
+            value="Current location"
+            onClick={getCurrentLocation}
+         />
+         
+        <button type="button" id="location-search">          
+        <input type="submit" className="search-button" value="Location" />
         </button>
-      </form>
+      
       <WeatherInfo data={weatherData}/>
 
 
