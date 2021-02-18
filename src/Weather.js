@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import WeatherInfo from "./WeatherInfo";
+import WeatherForecast from "./WeatherForecast";
 import FormattedTime from "./FormatTime";
 import FormattedDate from "./FormatDate";
 import axios from "axios";
@@ -94,11 +95,12 @@ if (weatherData.ready) {
       <h4 className="weather-forecast">18 Hour Forecast</h4>
 
       <div className="row" id="forecast"></div>
+      <WeatherForecast city={weatherData.city}/>
 
       <br></br>
       Open-sourced on {" "}
       <a
-        href="https://github.com/maystar236/Weather-Application-by-Kirsty"
+        href="https://github.com/maystar236/React-Weather-Application"
         target="_blank" rel="noreferrer"
         id="github"
       >
