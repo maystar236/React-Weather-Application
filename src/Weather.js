@@ -16,6 +16,7 @@ export default function Weather(props) {
       wind: response.data.wind.speed,
       date: new Date(response.data.dt * 1000),
       city: response.data.name,
+      country: response.data.sys.country,
       minTemp: response.data.main.temp_min,
       maxTemp: response.data.main.temp_max,
       feelsLike: response.data.main.feels_like,
@@ -25,7 +26,12 @@ export default function Weather(props) {
       timezone: response.data.timezone
     });
   }
-  
+ 
+  function search() {
+    const apiKey = "f0fc9549c6de17fa6c965f916fc7d8d4";
+    let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`;
+    axios.get(apiUrl).then(handleResponse);
+  }
 function handleSubmit(event) {
   event.preventDefault()
   search();
@@ -34,26 +40,20 @@ function handleSubmit(event) {
 function handleCityChange(event) {
   setCity(event.target.value);
 }
-
-function search() {
+function showLocation(position) {
   let apiKey = "f0fc9549c6de17fa6c965f916fc7d8d4";
-  let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`;
+  let unit = "metric";
+  let apiUrl = `https://api.openweathermap.org/data/2.5/weather?lat=${position.coords.latitude}&lon=${position.coords.longitude}&appid=${apiKey}&units=metric`;
   axios.get(apiUrl).then(handleResponse);
+
 }
-  
+ 
   function getLocation(event) {
     event.preventDefault();
     navigator.geolocation.getCurrentPosition(showLocation);
   }
 
-  function showLocation(position) {
-    let apiKey = "f0fc9549c6de17fa6c965f916fc7d8d4";
-    let apiUrl = `https://api.openweathermap.org/data/2.5/forecast?lat=${position.coords.latitude}&lon=${position.coords.longitude}&appid=${apiKey}&units=metric`;
-    axios.get(apiUrl).then(handleResponse);
-  
-  }
 
-  
 
 if (weatherData.ready) {
   return (
