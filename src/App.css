@@ -91,16 +91,5 @@
   .current-weather .inactive:hover {
     text-decoration: none;
   }
-  .weather-forecast-temperature {
-    font-size: 12px;
-    text-align: center;
-  }
-  .weather-forecast-temperature strong {
-    font-size: 12px;
-    text-align: center;
-  }
-  .col-2 {
-    padding-right: 0px;
-    padding-left: 0px;
-  }
+
   
