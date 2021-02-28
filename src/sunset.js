@@ -1,5 +1,3 @@
-import React from "react";
-
 export default function Sunset (props) {
     let sunsetUnix = props.sunset;
     let sunsetDate = new Date(sunsetUnix*1000);

@@ -1,5 +1,3 @@
-import React from "react";
-
 export default function FormattedTime() {
     let currentTime = new Date();
     let hour = currentTime.getHours();

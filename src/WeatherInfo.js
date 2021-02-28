@@ -2,7 +2,6 @@ import React from "react";
 import Sunrise from "./FormatSun";
 import Sunset from "./sunset.js";
 import './App.css';
-import WeatherIcon from "./WeatherIcon";
 import WeatherTemperature from "./WeatherTemperature";
 
 
