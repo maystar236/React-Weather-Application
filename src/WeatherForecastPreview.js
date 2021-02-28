@@ -7,15 +7,20 @@ export default function WeatherForecastPreview(props) {
         let hours = date.getHours();
         return `${hours}:00`;
     }
-    function temperature() {
-        let temperature = Math.round(props.data.main.temp);
-        return `${temperature}°C`
+    function maxTemperature() {
+        let maxTemperature = Math.round(props.data.main.temp_max);
+        return `${maxTemperature}°C`
+    }
+    function minTemperature() {
+        let minTemperature = Math.round(props.data.main.temp_min);
+        return `${minTemperature}°C`
     }
     return (
-        <div className = "col">
+        <div className = "col-6">
         {hours()}
         <WeatherIcon code={props.data.weather[0].icon} />
-        {temperature()}
+        <strong>{maxTemperature()}</strong> <br />
+        {minTemperature()}
         </div>
     )
 }

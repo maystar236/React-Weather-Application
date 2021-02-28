@@ -3,6 +3,7 @@ import WeatherInfo from "./WeatherInfo";
 import WeatherForecast from "./WeatherForecast";
 import FormattedTime from "./FormatTime";
 import FormattedDate from "./FormatDate";
+import './App.css';
 import axios from "axios";
 
 export default function Weather(props) {
@@ -58,7 +59,7 @@ function showLocation(position) {
 
 if (weatherData.ready) {
   return (
-    <div className="container">
+    <div className="container" >
       <div className="date-time">
         <span id="date">Date: <FormattedDate /></span>
         <br />
