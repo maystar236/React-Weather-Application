@@ -74,7 +74,7 @@ if (weatherData.ready) {
           autocomplete="off"
           onChange={handleCityChange}
         />
-        </form>
+        
         <button id="city-search">
         <input type="submit" className="search-button" value="Search" />
         </button>
@@ -85,6 +85,7 @@ if (weatherData.ready) {
             value="Current location"
             onClick={getLocation}
          />
+         </form>
          
      
       <WeatherInfo data={weatherData}/>
