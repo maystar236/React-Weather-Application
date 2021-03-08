@@ -3,6 +3,7 @@ import Sunrise from "./FormatSun";
 import Sunset from "./sunset.js";
 import './App.css';
 import WeatherTemperature from "./WeatherTemperature";
+import WeatherIcon from "./WeatherIcon";
 
 
 export default function WeatherInfo(props) {
