@@ -2,7 +2,7 @@
 
 .App {
   max-width: 600px;
-  margin: 30px auto;
+  margin: 35px auto;
 }
 
 .App footer {
@@ -12,7 +12,7 @@
 .container {
     font-family: "Overpass", sans-serif;
     color: white;
-    max-width: 450px;
+    max-width: 95%;
     box-shadow: 5px 10px 10px 10px #cdd7e7;
     border-radius: 15px;
     margin-top: 20px;
@@ -20,9 +20,9 @@
     padding: 30px;
     background-image: linear-gradient(
       to top,
-      #1e3c72 0%,
-      #1e3c72 1%,
-      #2a5298 100%
+      #1f67ec 10%,
+      #2953a1 30%,
+      #a9caff 80%
     );
   }
   button {
